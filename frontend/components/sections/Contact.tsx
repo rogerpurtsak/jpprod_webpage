@@ -67,20 +67,29 @@ export default function Contact() {
             <h3 className="text-2xl font-bold mb-2">Social Media</h3>
             <div className="flex gap-6">
               <a
-                href="#"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xl text-gray-600 hover:text-black transition-colors"
+                aria-label="Visit our Instagram profile"
               >
                 Instagram
               </a>
               <a
-                href="#"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xl text-gray-600 hover:text-black transition-colors"
+                aria-label="Visit our LinkedIn profile"
               >
                 LinkedIn
               </a>
               <a
-                href="#"
+                href="https://vimeo.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xl text-gray-600 hover:text-black transition-colors"
+                aria-label="Visit our Vimeo channel"
               >
                 Vimeo
               </a>
