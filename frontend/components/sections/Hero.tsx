@@ -35,7 +35,7 @@ export default function Hero() {
           ref={titleRef}
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
         >
-          JP PROD
+          JPPROD
         </h1>
         <p
           ref={subtitleRef}
