@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 export default function Contact() {
@@ -17,6 +18,15 @@ export default function Contact() {
                 item.classList.remove('opacity-0', 'translate-x-10');
               }, index * 200);
             });
+
+            // pilt ilmub veidi hiljem
+            const visual = entry.target.querySelector('.contact-visual');
+            if (visual) {
+              setTimeout(() => {
+                visual.classList.add('opacity-100', 'translate-x-0');
+                visual.classList.remove('opacity-0', 'translate-x-10');
+              }, 250);
+            }
           }
         });
       },
@@ -24,7 +34,6 @@ export default function Contact() {
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
-
     return () => observer.disconnect();
   }, []);
 
@@ -32,67 +41,88 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-white text-black px-6 py-20"
+      className="min-h-screen bg-black text-white px-6 py-20 flex items-center justify-center"
     >
-      <div className="max-w-4xl mx-auto w-full">
+      <div className="w-full max-w-6xl">
         <h2 className="text-4xl md:text-6xl font-bold mb-16 text-center">
-          Let&apos;s Work Together
+          teeme koos kunsti.
         </h2>
-        <div className="space-y-8">
-          <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-            <h3 className="text-2xl font-bold mb-2">Email</h3>
-            <a
-              href="mailto:info@jpprod.com"
-              className="text-xl text-gray-600 hover:text-black transition-colors"
-            >
-              info@jpprod.com
-            </a>
-          </div>
-          <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-            <h3 className="text-2xl font-bold mb-2">Phone</h3>
-            <a
-              href="tel:+1234567890"
-              className="text-xl text-gray-600 hover:text-black transition-colors"
-            >
-              +1 (234) 567-890
-            </a>
-          </div>
-          <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-            <h3 className="text-2xl font-bold mb-2">Location</h3>
-            <p className="text-xl text-gray-600">
-              Los Angeles, California
-            </p>
-          </div>
-          <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-            <h3 className="text-2xl font-bold mb-2">Social Media</h3>
-            <div className="flex gap-6">
+
+        {/* 2 veergu */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+          {/* LEFT: kontakt */}
+          <div className="space-y-8">
+            <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
+              <h3 className="text-2xl font-bold mb-2">Email</h3>
               <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl text-gray-600 hover:text-black transition-colors"
-                aria-label="Visit our Instagram profile"
+                href="mailto:judopoissproduction@gmail.com"
+                className="text-xl text-gray-300 hover:text-white transition-colors"
               >
-                Instagram
+                judopoissproduction@gmail.com
               </a>
+            </div>
+
+            <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
+              <h3 className="text-2xl font-bold mb-2">Phone</h3>
               <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl text-gray-600 hover:text-black transition-colors"
-                aria-label="Visit our LinkedIn profile"
+                href="tel:55539487"
+                className="text-xl text-gray-300 hover:text-white transition-colors"
               >
-                LinkedIn
+                5553 9487
               </a>
-              <a
-                href="https://vimeo.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xl text-gray-600 hover:text-black transition-colors"
-                aria-label="Visit our Vimeo channel"
-              >
-                Vimeo
-              </a>
+            </div>
+
+            <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
+              <h3 className="text-2xl font-bold mb-2">Asukoht</h3>
+              <p className="text-xl text-gray-300">Eesti</p>
+            </div>
+
+            <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
+              <h3 className="text-2xl font-bold mb-2">Sotsiaalmeedia</h3>
+              <div className="flex gap-6 flex-wrap">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://vimeo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                >
+                  Vimeo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: hõljuv pilt */}
+          <div className="contact-visual opacity-0 translate-x-10 transition-all duration-700 ease-out">
+            <div className="relative w-full max-w-[380px] ml-auto md:mr-[-40px]">
+
+              <div className="relative animate-[floaty-contact_6s_ease-in-out_infinite] will-change-transform">
+                <Image
+                  src="/images/kaamerareal.png"
+                  alt="Camera"
+                  width={512}
+                  height={512}
+                  className="w-full h-auto select-none"
+                  priority={false}
+                />
+              </div>
+
             </div>
           </div>
         </div>

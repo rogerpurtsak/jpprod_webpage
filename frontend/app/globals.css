@@ -181,4 +181,39 @@ body {
   }
 }
 
+/* Media section reveal */
+.media-section.is-visible .media-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle sheen sweep on hover */
+@keyframes media-sheen {
+  0% { transform: translateX(-120%) rotate(12deg); }
+  100% { transform: translateX(260%) rotate(12deg); }
+}
+
+.animate-media-sheen {
+  animation: media-sheen 1.2s ease-in-out infinite;
+}
+
+/* Contact floating image */
+.floating-media {
+  animation: floaty-contact 6s ease-in-out infinite;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.55));
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+@keyframes floaty-contact {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-14px) rotate(1deg); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-media { animation: none !important; }
+}
+
+
 

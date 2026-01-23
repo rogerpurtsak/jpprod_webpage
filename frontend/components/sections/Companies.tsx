@@ -83,10 +83,6 @@ export default function Companies() {
             </div>
           </div>
         </div>
-
-        <p className="text-center text-gray-400 text-lg">
-          Ja paljud teised ettevõtted
-        </p>
       </div>
 
       {/* styled-jsx töötab Next.js App Routeris ka client componentis */}
