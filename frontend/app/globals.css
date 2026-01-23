@@ -18,3 +18,167 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
+
+/* -------------------------------------------------------
+   HERO / LANDING FX — BLACK & WHITE ONLY
+-------------------------------------------------------- */
+
+/* Reveal */
+.hero .hero-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(6px);
+  transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
+}
+.hero.is-visible .hero-reveal {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Parallax bg (mouse vars --mx/--my) */
+.hero-bg {
+  transform: scale(1.08)
+    translate3d(
+      calc((var(--mx, 0.5) - 0.5) * -22px),
+      calc((var(--my, 0.5) - 0.5) * -14px),
+      0
+    );
+  transition: transform 140ms ease-out;
+  will-change: transform;
+  filter: saturate(0) contrast(1.08) brightness(0.9); /* B/W look */
+}
+
+/* B/W animated gradient text (subtle, classy) */
+.gradient-text {
+  background: linear-gradient(90deg, #ffffff, #d8d8d8, #ffffff);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: bw-gradient 7s ease-in-out infinite;
+  text-shadow: 0 12px 80px rgba(255, 255, 255, 0.10);
+}
+
+/* Grain/noise overlay */
+.hero-noise {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  animation: noise 1.2s steps(2) infinite;
+}
+
+/* CTA sheen */
+.cta .sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  background:
+    radial-gradient(
+      140px 140px at 18% 10%,
+      rgba(255, 255, 255, 0.28),
+      transparent 60%
+    ),
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.12) 35%,
+      transparent 70%
+    );
+  transform: translateX(-60%);
+  opacity: 0.22;
+  animation: sheen 2.8s ease-in-out infinite;
+}
+
+/* Scroll indicator */
+.animate-scrollbar {
+  animation: scrollbar 1.4s ease-in-out infinite;
+}
+
+/* Original zoom animation (kept) */
+@layer utilities {
+  @keyframes hero-zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-zoom {
+    animation: hero-zoom 20s ease-in-out infinite;
+    transform-origin: center;
+  }
+}
+
+/* Keyframes */
+@keyframes bw-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes noise {
+  0% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(-2%, 1%, 0); }
+  50% { transform: translate3d(1%, -2%, 0); }
+  75% { transform: translate3d(-1%, -1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes sheen {
+  0% { transform: translateX(-60%); opacity: 0.12; }
+  50% { transform: translateX(20%); opacity: 0.28; }
+  100% { transform: translateX(80%); opacity: 0.12; }
+}
+
+@keyframes scrollbar {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Typewriter (clip-path, works with any font) */
+.typewriter {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;              /* caret tuleb ::after'iga */
+  clip-path: inset(0 100% 0 0);   /* alguses peidetud */
+}
+
+/* Caret */
+.typewriter::after {
+  content: "";
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  right: -0.12em;
+  width: 0.08em;
+  background: rgba(255, 255, 255, 0.85);
+  animation: caret 700ms steps(1, end) infinite;
+}
+
+/* Start typing when hero visible */
+.hero.is-visible .typewriter {
+  animation: typing-clip 950ms steps(var(--chars), end) 220ms forwards;
+}
+
+@keyframes typing-clip {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    clip-path: inset(0 0 0 0);
+    animation: none !important;
+  }
+  .typewriter::after {
+    display: none;
+    animation: none !important;
+  }
+}
+
+
