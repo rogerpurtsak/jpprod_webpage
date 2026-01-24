@@ -35,7 +35,7 @@ export default function Hero() {
   }, []);
 
   const title = 'JPPROD';
-  const subtitle = 'Creating Visual Stories That Matter';
+  const subtitle = 'me teeme päris asju.';
 
   return (
     <section

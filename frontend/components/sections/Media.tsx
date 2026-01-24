@@ -41,45 +41,43 @@ export default function Media() {
     {
       type: 'video',
       title: 'Muusikavideod',
-      subtitle: 'Cinematic visuals for artists & releases.',
+      subtitle: 'Filmiilikud visuaalid artistidele ja väljaannetele.',
       src: '/videos/placeholder-music.mp4',
     },
     {
       type: 'video',
       title: 'Aftermovied',
-      subtitle: 'Energy + atmosphere, cut to the beat.',
+      subtitle: 'Energia ja atmosfäär, monteeritud rütmi järgi.',
       src: '/videos/placeholder-aftermovie.mp4',
     },
     {
       type: 'video',
       title: 'Lühivideod',
-      subtitle: 'Short-form that hooks fast and converts.',
+      subtitle: 'Lühivorm, mis köidab kiiresti ja konverteerib.',
       src: '/videos/placeholder-short.mp4',
     },
     {
       type: 'video',
       title: 'Ürituste videod',
-      subtitle: 'From stage to crowd — highlight coverage.',
+      subtitle: 'Lavast publikuni esiletõstetud kokkuvõtted.',
       src: '/videos/placeholder-event.mp4',
     },
     {
       type: 'gallery',
       title: 'Pulmad',
-      subtitle: 'Timeless, documentary-style moments.',
+      subtitle: 'Ajatud, dokumentaalse stiiliga hetked.',
       images: [
-        '/images/placeholder-wedding-1.jpg',
-        '/images/placeholder-wedding-2.jpg',
-        '/images/placeholder-wedding-3.jpg',
+        '/images/pulmadjp.jpg',
       ],
     },
     {
       type: 'gallery',
       title: 'Fotograafia',
-      subtitle: 'Clean, high-contrast editorial frames.',
+      subtitle: 'Puhas, kõrge kontrastiga toimetuslik esteetika.',
       images: [
-        '/images/placeholder-photo-1.jpg',
-        '/images/placeholder-photo-2.jpg',
-        '/images/placeholder-photo-3.jpg',
+        '/images/raju1.jpg',
+        '/images/raju2.jpg',
+        '/images/raju3.jpg',
       ],
     },
   ];
@@ -93,10 +91,10 @@ export default function Media() {
     <div className="max-w-6xl mx-auto w-full">
       <div className="text-center mb-14">
         <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-          Services
+          Teenused
         </h2>
         <p className="mt-4 text-black/60 text-lg md:text-xl">
-          Black &amp; white, clean cuts, strong composition.
+          pikslid, mida silmad mäletama jäävad.
         </p>
       </div>
 
@@ -116,13 +114,10 @@ export default function Media() {
                     <div className="absolute inset-0 grid place-items-center">
                       <div className="text-center px-6">
                         <div className="text-xs tracking-[0.35em] text-white/70">
-                          VIDEO PLACEHOLDER
+                          VIDEO NÄIDIS
                         </div>
                         <div className="mt-3 text-2xl font-extrabold text-white">
                           {card.title}
-                        </div>
-                        <div className="mt-2 text-sm text-white/60">
-                          Replace src later
                         </div>
                       </div>
                     </div>
@@ -138,28 +133,32 @@ export default function Media() {
                   </>
                 ) : (
                   <>
-                    {/* 3-IMAGE PLACEHOLDER GRID (works without any files) */}
+                    {/* Render actual gallery images if provided */}
+                    {card.images.length === 1 ? (
+                    <div className="absolute inset-0">
+                      <img
+                        src={card.images[0]}
+                        alt={card.title}
+                        className="h-full w-full object-cover block"
+                      />
+                    </div>
+                  ) : (
                     <div className="grid h-full w-full grid-cols-3 gap-[2px] bg-black">
-                      {[1, 2, 3].map((n) => (
-                        <div
-                          key={n}
-                          className="relative grid place-items-center bg-white/5"
-                        >
-                          <div className="text-center">
-                            <div className="text-[10px] tracking-[0.35em] text-white/60">
-                              IMG {n}
-                            </div>
-                            <div className="mt-2 text-sm font-semibold text-white">
-                              {card.title}
-                            </div>
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/35" />
+                      {card.images.slice(0, 3).map((src, i) => (
+                        <div key={src + i} className="relative overflow-hidden bg-black">
+                          <img
+                            src={src}
+                            alt={`${card.title} ${i + 1}`}
+                            className="h-full w-full object-cover block"
+                          />
                         </div>
                       ))}
                     </div>
+                  )}
+
 
                     <div className="absolute top-4 left-4 border border-white/40 bg-black/30 backdrop-blur px-3 py-1 text-xs tracking-widest text-white">
-                      GALLERY
+                      GALERII
                     </div>
                   </>
                 )}
@@ -179,15 +178,6 @@ export default function Media() {
                   {card.subtitle}
                 </p>
 
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-xs tracking-[0.22em] text-black/60">
-                    VIEW
-                  </span>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold">
-                    Open
-                    <span className="inline-block h-[2px] w-8 bg-black group-hover:w-12 transition-all duration-300" />
-                  </span>
-                </div>
               </div>
             </div>
           </article>

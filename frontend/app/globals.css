@@ -215,5 +215,15 @@ body {
   .floating-media { animation: none !important; }
 }
 
+@keyframes team-sheen {
+  0% { transform: translateX(-120%) rotate(12deg); }
+  100% { transform: translateX(260%) rotate(12deg); }
+}
+
+.team-sheen {
+  animation: team-sheen 1.2s ease-in-out infinite;
+}
+
+
 
 

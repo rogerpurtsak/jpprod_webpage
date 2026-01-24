@@ -77,7 +77,7 @@ export default function Companies() {
                   // logo “tile” suurus – hoiab ühtlase rütmi
                   style={{ minWidth: '160px' }}
                 >
-                  <Logo base={base} alt={`Company ${((i % companyBases.length) + 1).toString()}`} />
+                  <Logo base={base} alt={`Ettevõte ${((i % companyBases.length) + 1).toString()}`} />
                 </div>
               ))}
             </div>

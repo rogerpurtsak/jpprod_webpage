@@ -53,7 +53,7 @@ export default function Contact() {
           {/* LEFT: kontakt */}
           <div className="space-y-8">
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">Email</h3>
+              <h3 className="text-2xl font-bold mb-2">E-post</h3>
               <a
                 href="mailto:judopoissproduction@gmail.com"
                 className="text-xl text-gray-300 hover:text-white transition-colors"
@@ -63,7 +63,7 @@ export default function Contact() {
             </div>
 
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">Phone</h3>
+              <h3 className="text-2xl font-bold mb-2">Telefon</h3>
               <a
                 href="tel:55539487"
                 className="text-xl text-gray-300 hover:text-white transition-colors"
