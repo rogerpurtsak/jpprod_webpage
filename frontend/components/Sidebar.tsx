@@ -94,7 +94,7 @@ export default function Sidebar() {
         }}
       >
         <div
-          className={`relative h-full bg-black/90 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 ease-out ${
+          className={`relative h-full bg-[#050506]/95 backdrop-blur-xl border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 ease-out ${
             isExpanded ? 'translate-x-0' : '-translate-x-1'
           }`}
         >
@@ -118,7 +118,7 @@ export default function Sidebar() {
                 }}
               >
                 <div
-                  className={`absolute inset-0 bg-white/10 transition-all duration-300 origin-left ${
+                  className={`absolute inset-0 bg-[rgba(94,106,210,0.15)] transition-all duration-300 origin-left ${
                     hoveredItem === item.id ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
                   }`}
                   style={{ transformOrigin: 'left center' }}
@@ -165,7 +165,7 @@ export default function Sidebar() {
       {/* Mobile/Tablet - Hamburger Button */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        className="fixed top-4 left-4 z-50 lg:hidden w-14 h-14 bg-black/90 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10 shadow-xl"
+        className="fixed top-4 left-4 z-50 lg:hidden w-14 h-14 bg-[#050506]/95 backdrop-blur-xl rounded-xl flex items-center justify-center border border-white/[0.08] shadow-xl"
         aria-label="Toggle menu"
       >
         <div className="flex flex-col gap-1.5 w-6">
@@ -194,8 +194,8 @@ export default function Sidebar() {
         }`}
       >
         {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black/90 backdrop-blur-md"
+        <div
+          className="absolute inset-0 bg-[#020203]/95 backdrop-blur-xl"
           onClick={() => setIsMobileMenuOpen(false)}
         />
         

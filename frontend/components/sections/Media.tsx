@@ -1,13 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import YouTubeHoverCard from '../YouTubeHoverCard';
 
 type MediaCard =
   | {
       type: 'video';
       title: string;
       subtitle: string;
-      src: string; // placeholder video path (not used right now)
+      src: string;
     }
   | {
       type: 'gallery';
@@ -59,50 +60,68 @@ export default function Media() {
   return (
     <section
       id="media"
-      className="min-h-screen bg-white text-black px-6 py-20 flex items-center justify-center"
+      className="min-h-screen bg-[#050506] text-[#EDEDEF] px-4 md:px-6 py-24 md:py-32 flex items-center justify-center"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight text-[#EDEDEF]">
             Teenused
           </h2>
-          <p className="mt-4 text-black/60 text-lg md:text-xl">
+          <p className="mt-3 text-[#8A8F98] text-base md:text-xl">
             pikslid, mida silmad mäletama jäävad.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
           {cards.map((card) => (
             <article key={card.title} className="h-full">
-              <div className="group relative border-2 border-black bg-white overflow-hidden">
+              <div
+                className="group relative bg-white/[0.05] border border-white/[0.08] rounded-2xl overflow-hidden
+                           transition-all duration-[400ms] hover:bg-white/[0.07] hover:border-white/[0.14]
+                           hover:shadow-[0_0_32px_rgba(94,106,210,0.12)]"
+                style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
+              >
                 {/* TOP MEDIA */}
-                <div className="relative aspect-[16/10] overflow-hidden border-b-2 border-black bg-black">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.08] bg-[#0a0a0c]">
                   {card.type === 'video' ? (
                     <>
-                      {/* Video placeholder (cheap = no actual video decoding) */}
-                      <div className="absolute inset-0 grid place-items-center">
-                        <div className="text-center px-6">
-                          <div className="text-xs tracking-[0.35em] text-white/70">
-                            VIDEO NÄIDIS
-                          </div>
-                          <div className="mt-3 text-2xl font-extrabold text-white">
-                            {card.title}
-                          </div>
+                      {/* If this is the Muusikavideod card, embed the YouTube hover card */}
+                      {card.title === 'Muusikavideod' ? (
+                        <div className="absolute inset-0">
+                          <YouTubeHoverCard videoId="l5Wn0kHNi2Y" className="w-full h-full" />
                         </div>
-                      </div>
+                      ) : card.title === 'Aftermovied' ? (
+                        <div className="absolute inset-0">
+                          <YouTubeHoverCard videoId="84yzuNLO_-Y" className="w-full h-full" />
+                        </div>
+                      ) : card.title === 'Ürituste videod' ? (
+                        <div className="absolute inset-0">
+                          <YouTubeHoverCard videoId="tyDIqQYyL_A" className="w-full h-full" />
+                        </div>
+                      ) : (
+                        <>
+                          <div className="absolute inset-0 grid place-items-center">
+                            <div className="text-center px-6">
+                              <div className="text-xs tracking-[0.35em] text-[#8A8F98]">
+                                VIDEO NÄIDIS
+                              </div>
+                              <div className="mt-3 text-2xl font-extrabold text-[#EDEDEF]">
+                                {card.title}
+                              </div>
+                            </div>
+                          </div>
 
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.10),transparent_60%)]" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/45" />
+                          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(94,106,210,0.08),transparent_60%)]" />
+                          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/20 via-transparent to-[#0a0a0c]/50" />
+                        </>
+                      )}
 
-                      {/* Corner label (no backdrop-blur = cheaper) */}
-                      <div className="absolute top-4 left-4 border border-white/40 bg-black/60 px-3 py-1 text-xs tracking-widest text-white">
+                      <div className="absolute top-4 left-4 border border-white/[0.15] bg-white/[0.06] backdrop-blur-sm px-3 py-1 text-xs tracking-widest text-[#8A8F98] rounded-md">
                         VIDEO
                       </div>
                     </>
                   ) : (
                     <>
-                      {/* Gallery: 1 image = full cover, 3 images = triptych */}
                       {card.images.length === 1 ? (
                         <div className="absolute inset-0">
                           <Image
@@ -116,7 +135,7 @@ export default function Media() {
                           />
                         </div>
                       ) : (
-                        <div className="grid h-full w-full grid-cols-3 gap-[2px] bg-black">
+                        <div className="grid h-full w-full grid-cols-3 gap-[2px] bg-[#020203]">
                           {card.images.slice(0, 3).map((src, i) => (
                             <div key={src + i} className="relative overflow-hidden">
                               <Image
@@ -133,28 +152,26 @@ export default function Media() {
                         </div>
                       )}
 
-                      {/* Subtle overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/25 pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020203]/40 pointer-events-none" />
 
-                      {/* Corner label (no blur) */}
-                      <div className="absolute top-4 left-4 border border-white/40 bg-black/60 px-3 py-1 text-xs tracking-widest text-white">
+                      <div className="absolute top-4 left-4 border border-white/[0.15] bg-white/[0.06] backdrop-blur-sm px-3 py-1 text-xs tracking-widest text-[#8A8F98] rounded-md">
                         GALERII
                       </div>
                     </>
                   )}
 
-                  {/* Hover sheen (NO keyframes, runs only on hover) */}
+                  {/* Hover sheen */}
                   <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/12 rotate-12 blur-2xl translate-x-[-120%] group-hover:translate-x-[260%] transition-transform duration-700 ease-in-out" />
+                    <div className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/[0.06] rotate-12 blur-2xl translate-x-[-120%] group-hover:translate-x-[260%] transition-transform duration-700 ease-in-out" />
                   </div>
                 </div>
 
                 {/* CONTENT */}
-                <div className="p-7">
-                  <h3 className="text-2xl font-extrabold tracking-tight">
+                <div className="p-6">
+                  <h3 className="text-xl font-bold tracking-tight text-[#EDEDEF]">
                     {card.title}
                   </h3>
-                  <p className="mt-3 text-black/65 leading-relaxed">
+                  <p className="mt-2 text-[#8A8F98] leading-relaxed text-sm">
                     {card.subtitle}
                   </p>
                 </div>

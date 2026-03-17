@@ -61,10 +61,10 @@ export default function Companies() {
     <section
       id="companies"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-black text-white px-6 py-20"
+      className="min-h-screen flex items-center justify-center bg-[#050506] text-[#EDEDEF] px-4 md:px-6 py-24 md:py-32"
     >
-      <div className="max-w-6xl mx-auto w-full flex flex-col items-center gap-12">
-        <h2 className="text-4xl md:text-6xl font-bold text-center">Meie Partnerid</h2>
+      <div className="max-w-6xl mx-auto w-full flex flex-col items-center gap-10 md:gap-12">
+        <h2 className="text-3xl md:text-6xl font-bold text-center text-[#EDEDEF]">Meie Partnerid</h2>
 
         {/* Smooth infinite marquee */}
         <div className="w-full">

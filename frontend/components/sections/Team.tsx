@@ -1,17 +1,19 @@
 "use client";
 
+import Image from 'next/image';
+
 type Member = {
   name: string;
   role: string;
   email?: string;
   phone?: string;
-  img?: string; // optional: /images/ott.jpg jne
+  img?: string;
 };
 
 const TEAM: Member[] = [
-  { name: "Ott Raud", role: "CEO / Videograaf / Foto", email: "judopoissproduction@gmail.com", img: "/images/1.jpg" },
-  { name: "Karl Säde", role: "Videograaf / Monteerija / Foto", email: "karl.jpprod@gmail.com", img: "/images/2.jpg" },
-  { name: "Carolin Kuusk", role: "Sotsiaalmeedia juht", email: "carolin.jpprod@gmail.com", img: "/images/3.jpg" },
+  { name: "Ott Raud", role: "CEO / Videograaf / Foto", email: "judopoissproduction@gmail.com", img: "/images/DSC04493.jpg" },
+  { name: "Karl Säde", role: "Videograaf / Monteerija / Foto", email: "karl.jpprod@gmail.com", img: "/images/DSC04463.jpg" },
+  { name: "Carolin Kuusk", role: "Turundus ja müügijuht", email: "carolin.jpprod@gmail.com", img: "/images/3.jpg" },
   { name: "Rasmus Kadak", role: "Videograaf / Monteerija", email: "rasmus.jpprod@gmail.com", img: "/images/4.jpg" },
 ];
 
@@ -28,81 +30,74 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="team-section min-h-screen bg-white text-black px-6 py-20 flex items-center justify-center"
+      className="team-section min-h-screen bg-[#020203] text-[#EDEDEF] px-4 md:px-6 py-24 md:py-32 flex flex-col items-center justify-center"
     >
       <div className="w-full max-w-6xl">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+        <div className="text-center mb-10 md:mb-14">
+          <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight text-[#EDEDEF]">
             Meeskond
           </h2>
-          <p className="mt-4 text-black/60 text-lg md:text-xl">
+          <p className="mt-3 text-[#8A8F98] text-base md:text-xl">
             Väike tiim. Suur tulemus.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {TEAM.map((m) => (
             <article
               key={m.name}
-              className="group relative border-2 border-black bg-white overflow-hidden"
+              className="group relative bg-white/[0.05] border border-white/[0.08] rounded-xl md:rounded-2xl overflow-hidden
+                         transition-all duration-[400ms] hover:bg-white/[0.07] hover:border-white/[0.14]
+                         hover:shadow-[0_0_32px_rgba(94,106,210,0.12)]"
+              style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
             >
               {/* Top photo */}
-              <div className="relative aspect-square border-b-2 border-black bg-black">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative aspect-[3/4] border-b border-white/[0.08] bg-[#0a0a0c]">
+                <Image
                   src={m.img ?? ""}
                   alt={m.name}
-                  className="absolute inset-0 h-full w-full object-cover grayscale contrast-110 opacity-95"
+                  fill
+                  className="absolute inset-0 object-cover"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                   onError={(e) => {
-                    // hide broken img
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                   }}
                 />
 
-                {/* Fallback initials (visible even if img hidden) */}
+                {/* Fallback initials */}
                 <div className="absolute inset-0 grid place-items-center">
-                  <div className="h-24 w-24 rounded-full border border-white/25 bg-white/10 backdrop-blur text-white grid place-items-center text-2xl font-semibold tracking-widest">
+                  <div className="h-14 w-14 md:h-20 md:w-20 rounded-full border border-white/[0.15] bg-white/[0.06] backdrop-blur text-[#EDEDEF] grid place-items-center text-base md:text-xl font-semibold tracking-widest">
                     {initials(m.name)}
                   </div>
                 </div>
 
                 {/* Subtle overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/40" />
-
-                {/* Corner label */}
-                <div className="absolute top-4 left-4 border border-white/40 bg-black/30 backdrop-blur px-3 py-1 text-xs tracking-widest text-white">
-                  MEESKOND
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#020203]/70" />
 
                 {/* Hover sheen */}
                 <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/10 rotate-12 blur-2xl team-sheen" />
+                  <div className="absolute -left-1/2 top-0 h-full w-1/2 bg-white/[0.06] rotate-12 blur-2xl team-sheen" />
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-7">
-                <h3 className="text-xl font-extrabold tracking-tight">
+              <div className="p-3 md:p-5">
+                <h3 className="text-sm md:text-base font-bold tracking-tight text-[#EDEDEF] leading-tight">
                   {m.name}
                 </h3>
-                <p className="mt-2 text-black/65 leading-relaxed">
+                <p className="mt-1 text-[#8A8F98] text-xs md:text-sm leading-relaxed">
                   {m.role}
                 </p>
 
                 {m.email && (
                   <a
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-black/80 hover:text-black transition-colors"
+                    className="mt-3 hidden sm:inline-flex items-center gap-2 text-xs font-medium text-[#8A8F98] hover:text-[#a5acf5] transition-colors duration-300"
                     href={`mailto:${m.email}`}
                   >
-                    <span className="inline-block h-[2px] w-6 bg-black/70 group-hover:w-10 transition-all duration-300" />
+                    <span className="inline-block h-[1px] w-4 bg-[#5E6AD2]/70" />
                     {m.email}
                   </a>
                 )}
-              </div>
-
-              {/* Hover invert: clean “lux” effect */}
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute inset-0 border-2 border-black" />
               </div>
             </article>
           ))}

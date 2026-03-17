@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------
+   STYLE #70 — MODERN DARK (CINEMA)
+   Design tokens
+-------------------------------------------------------- */
+:root {
+  --bg-deep:          #020203;
+  --bg-base:          #050506;
+  --bg-elevated:      #0a0a0c;
+  --surface:          rgba(255, 255, 255, 0.05);
+  --foreground:       #EDEDEF;
+  --foreground-muted: #8A8F98;
+  --accent:           #5E6AD2;
+  --accent-glow:      rgba(94, 106, 210, 0.20);
+  --border:           rgba(255, 255, 255, 0.08);
+  --radius:           16px;
+  --easing:           cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,16 +29,16 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: var(--bg-deep);
+  color: var(--foreground);
 }
 
 /* -------------------------------------------------------
-   HERO / LANDING FX — BLACK & WHITE ONLY
+   HERO / LANDING FX
 -------------------------------------------------------- */
 
 /* Reveal */
@@ -46,18 +64,18 @@ body {
     );
   transition: transform 140ms ease-out;
   will-change: transform;
-  filter: saturate(0) contrast(1.08) brightness(0.9); /* B/W look */
+  filter: saturate(0.25) contrast(1.08) brightness(0.72); /* cinematic dark */
 }
 
-/* B/W animated gradient text (subtle, classy) */
+/* Cinematic gradient text — subtle indigo shimmer */
 .gradient-text {
-  background: linear-gradient(90deg, #ffffff, #d8d8d8, #ffffff);
+  background: linear-gradient(90deg, #EDEDEF, #a5acf5, #EDEDEF);
   background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   animation: bw-gradient 7s ease-in-out infinite;
-  text-shadow: 0 12px 80px rgba(255, 255, 255, 0.10);
+  text-shadow: 0 12px 80px rgba(165, 172, 245, 0.15);
 }
 
 /* Grain/noise overlay */
@@ -222,6 +240,26 @@ body {
 
 .team-sheen {
   animation: team-sheen 1.2s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------
+   AMBIENT BLOB — slow oscillation (style #70)
+-------------------------------------------------------- */
+@keyframes blob-float {
+  0%,  100% { transform: translate(0px, 0px); }
+  25%        { transform: translate(30px, -20px); }
+  50%        { transform: translate(-25px, 15px); }
+  75%        { transform: translate(15px, 28px); }
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  pointer-events: none;
+  will-change: transform;
+  animation: blob-float var(--dur, 22s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
 }
 
 

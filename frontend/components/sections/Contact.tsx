@@ -19,7 +19,6 @@ export default function Contact() {
               }, index * 200);
             });
 
-            // pilt ilmub veidi hiljem
             const visual = entry.target.querySelector('.contact-visual');
             if (visual) {
               setTimeout(() => {
@@ -41,50 +40,61 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="min-h-screen bg-black text-white px-6 py-20 flex items-center justify-center"
+      className="relative min-h-screen bg-[#050506] text-[#EDEDEF] px-4 md:px-6 py-24 md:py-32 flex items-center justify-center overflow-hidden border-t border-white/[0.05]"
     >
-      <div className="w-full max-w-6xl">
-        <h2 className="text-4xl md:text-6xl font-bold mb-16 text-center">
+      {/* Ambient blob */}
+      <div
+        className="blob"
+        style={{
+          width: '500px', height: '500px',
+          top: '30%', right: '-10%',
+          background: 'rgba(94,106,210,0.08)',
+          ['--dur' as string]: '28s',
+          ['--delay' as string]: '4s',
+        }}
+      />
+
+      <div className="relative z-10 w-full max-w-6xl">
+        <h2 className="text-3xl md:text-6xl font-bold mb-10 md:mb-16 text-center text-[#EDEDEF]">
           teeme koos kunsti.
         </h2>
 
-        {/* 2 veergu */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
           {/* LEFT: kontakt */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">E-post</h3>
+              <h3 className="text-base md:text-xl font-semibold mb-1 text-[#8A8F98] uppercase tracking-widest">E-post</h3>
               <a
-                href="mailto:judopoissproduction@gmail.com"
-                className="text-xl text-gray-300 hover:text-white transition-colors"
+                href="mailto:info.jpprod@gmail.com"
+                className="text-base md:text-xl text-[#EDEDEF] hover:text-[#a5acf5] transition-colors duration-300 break-all"
               >
-                judopoissproduction@gmail.com
+                info.jpprod@gmail.com
               </a>
             </div>
 
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">Telefon</h3>
+              <h3 className="text-base md:text-xl font-semibold mb-1 text-[#8A8F98] uppercase tracking-widest">Telefon</h3>
               <a
                 href="tel:55539487"
-                className="text-xl text-gray-300 hover:text-white transition-colors"
+                className="text-base md:text-xl text-[#EDEDEF] hover:text-[#a5acf5] transition-colors duration-300"
               >
                 5553 9487
               </a>
             </div>
 
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">Asukoht</h3>
-              <p className="text-xl text-gray-300">Eesti</p>
+              <h3 className="text-base md:text-xl font-semibold mb-1 text-[#8A8F98] uppercase tracking-widest">Asukoht</h3>
+              <p className="text-base md:text-xl text-[#EDEDEF]">Eesti</p>
             </div>
 
             <div className="contact-item opacity-0 translate-x-10 transition-all duration-700 ease-out">
-              <h3 className="text-2xl font-bold mb-2">Sotsiaalmeedia</h3>
-              <div className="flex gap-6 flex-wrap">
+              <h3 className="text-base md:text-xl font-semibold mb-2 text-[#8A8F98] uppercase tracking-widest">Sotsiaalmeedia</h3>
+              <div className="flex gap-5 flex-wrap">
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                  className="text-base md:text-lg text-[#EDEDEF] hover:text-[#a5acf5] transition-colors duration-300"
                 >
                   Instagram
                 </a>
@@ -92,7 +102,7 @@ export default function Contact() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                  className="text-base md:text-lg text-[#EDEDEF] hover:text-[#a5acf5] transition-colors duration-300"
                 >
                   LinkedIn
                 </a>
@@ -100,7 +110,7 @@ export default function Contact() {
                   href="https://vimeo.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xl text-gray-300 hover:text-white transition-colors"
+                  className="text-base md:text-lg text-[#EDEDEF] hover:text-[#a5acf5] transition-colors duration-300"
                 >
                   Vimeo
                 </a>
@@ -110,8 +120,7 @@ export default function Contact() {
 
           {/* RIGHT: hõljuv pilt */}
           <div className="contact-visual opacity-0 translate-x-10 transition-all duration-700 ease-out">
-            <div className="relative w-full max-w-[380px] ml-auto md:mr-[-40px]">
-
+            <div className="relative w-full max-w-[260px] md:max-w-[380px] mx-auto md:ml-auto md:mr-[-40px]">
               <div className="relative animate-[floaty-contact_6s_ease-in-out_infinite] will-change-transform">
                 <Image
                   src="/images/kaamerareal.png"
@@ -122,7 +131,6 @@ export default function Contact() {
                   priority={false}
                 />
               </div>
-
             </div>
           </div>
         </div>
