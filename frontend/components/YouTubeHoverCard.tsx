@@ -63,10 +63,19 @@ export default function YouTubeHoverCard({ videoId, className = "" }: Props) {
     }
 
     if ((window as any).YT && (window as any).YT.Player) {
+      // API already ready — init immediately
       onYouTubeIframeAPIReady();
     } else {
-      // attach global callback and inject script once
-      (window as any).onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+      // Queue this card's init so multiple cards don't overwrite each other
+      if (!(window as any)._ytQueue) {
+        (window as any)._ytQueue = [];
+        (window as any).onYouTubeIframeAPIReady = () => {
+          ((window as any)._ytQueue as Array<() => void>).forEach(fn => fn());
+          (window as any)._ytQueue = [];
+        };
+      }
+      (window as any)._ytQueue.push(onYouTubeIframeAPIReady);
+
       if (!document.querySelector("script[data-yt]")) {
         const s = document.createElement("script");
         s.src = "https://www.youtube.com/iframe_api";
